@@ -1,27 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
+import DeckSizeSelector from '../Utils/DeckSizeSelector';
+import NewGameButton from '../Utils/NewGameButton';
 import logo from './Images/logo.svg';
 
 const NavBar = () => {
-
+  const location = useLocation();
+  console.log(location.pathname)
   return (
     <nav className='nav-bar'>
       <NavLink to='/'>
         <img className='nav-logo' src={logo} alt='' />
       </NavLink>
+      {
+        location.pathname === '/game' &&
         <div className='nav-items'>
           <label className='input-label'>Deck size: </label>
-          <select className='input' name='subject' onChange={(event) => console.log(event.target.value)}>
-            {[3,4,5,6,7,8,9,10].map((number, index) => <option key={index}>{number}</option>)}
-          </select>
-          <NavLink
-            className='new-game-button'
-            to={{ pathname: '/game'}}
-          >
-            New Game
-          </NavLink>
+          <DeckSizeSelector />
+          <NewGameButton />
         </div>
+      }
     </nav>
   );
 };
