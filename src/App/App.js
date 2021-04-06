@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+
 import Game from '../Pages/Game/Game';
 import Home from '../Pages/Home/Home';
 import NavBar from './NavBar';
