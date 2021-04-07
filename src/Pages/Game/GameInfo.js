@@ -4,8 +4,10 @@ const GameInfo = ({ tryCount, bestResult }) => {
 
   return (
     <div className='game-info'>
-      <span style={{ color: '#6d6d6d', marginRight: '4px' }}>Current tries:</span> <span>{tryCount}</span>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div style={{ position: 'absolute'}}>
+        <span style={{ color: '#6d6d6d', marginRight: '4px' }}>Current tries:</span> <span>{tryCount}</span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
         <span style={{ color: '#6d6d6d' }}>
           Best:
             </span>
