@@ -24,21 +24,16 @@ const imageMap = {
   webpack
 }
 
-const Card = ({ value, index, cardClick, revealedCardIndices, revealedCardTypes, onRevealedCardIndicesChange, onCardClick }) => {
-  const isInRevealedCardIndices = revealedCardIndices?.some(revealedIndex => revealedIndex === index);
-  const isInRevealedCardTypes = revealedCardTypes?.some(revealedCardType => revealedCardType === value);
-  const isRevealed = isInRevealedCardIndices || isInRevealedCardTypes;
+const Card = ({ value, index, tryCount, onTryCountChange, revealedCardIndices, onRevealedCardIndicesChange, isRevealed }) => {
 
-  function setRevealed() {
-    onCardClick();
-    if (cardClick % 3 === 0) {
-      onRevealedCardIndicesChange([]);
-    } else {
-      onRevealedCardIndicesChange([...revealedCardIndices, index])
-    }
+  function handleClick() {
+    if (revealedCardIndices.length > 0 && ((revealedCardIndices[0] === index) || (revealedCardIndices[1] === index))) return;
+    onTryCountChange();
+    if (tryCount % 2 === 0) onRevealedCardIndicesChange([index]);
+    else onRevealedCardIndicesChange([...revealedCardIndices, index]);
   }
   return (
-    <div className='card' key={index} onClick={() => setRevealed()}>
+    <div className='card' key={index} onClick={() => handleClick()}>
       {isRevealed && <img className='card-image' src={imageMap[value]} alt={value} />}
     </div>
   )

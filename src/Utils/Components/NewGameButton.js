@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { setCardClick, setCards, setCurrentTries, setRevealedCardIndices, setRevealedCardTypes } from '../../App/appStore';
+import { setTryCount, setCards, setRevealedCardIndices, setSolvedCards } from '../../App/appStore';
 
 const cardTypeValues = [
   'angular',
@@ -26,10 +26,9 @@ const NewGameButton = () => {
     const cards = cardTypes.concat(cardTypes);
     const shuffledCards = [...cards].sort(() => Math.random() - 0.5);
     dispatch(setCards(shuffledCards));
-    dispatch(setCurrentTries(0));
-    dispatch(setCardClick(0));
+    dispatch(setTryCount(0));
     dispatch(setRevealedCardIndices([]));
-    dispatch(setRevealedCardTypes([]));
+    dispatch(setSolvedCards([]));
   }
 
   return (

@@ -75,6 +75,11 @@ code {
   text-transform: uppercase;
 }
 
+.game-info {
+  display: flex;
+  margin: 12px 0px;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
