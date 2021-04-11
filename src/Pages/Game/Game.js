@@ -29,7 +29,7 @@ const Game = () => {
   }, [solvedCards]);
 
   return (
-    <div className='game-container'>
+    <>
         <GameInfo tryCount={tryCount} bestResult={bestResult}/>
         <div className='cards'>
           {
@@ -46,7 +46,7 @@ const Game = () => {
             ))
           }
       </div>
-    </div>
+    </>
   )
 };
 

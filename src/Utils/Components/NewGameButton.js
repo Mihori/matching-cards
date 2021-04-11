@@ -16,8 +16,7 @@ const cardTypeValues = [
   'webpack'
 ]
 
-
-const NewGameButton = () => {
+const NewGameButton = ({text}) => {
   const dispatch = useDispatch();
   const deckSize = useSelector(state => state.deckSize);
   
@@ -33,11 +32,11 @@ const NewGameButton = () => {
 
   return (
     <NavLink
-      className='new-game-button'
+      className={text === 'restart' ? 'restart-game-button' : 'new-game-button'}
       to={{ pathname: '/game' }}
       onClick={() => startNewGame()}
     >
-      Start New Game
+      {text}
     </NavLink>
   )
 };

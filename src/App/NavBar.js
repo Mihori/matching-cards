@@ -18,7 +18,7 @@ const NavBar = () => {
         <div className='nav-items'>
           <label className='input-label'>Deck size: </label>
           <DeckSizeSelector />
-          <NewGameButton />
+          <NewGameButton text='start new game'/>
         </div>
       }
     </nav>
