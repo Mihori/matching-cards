@@ -1,31 +1,35 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { createStore } from 'redux';
+import _ from 'lodash';
 
 import Game from '../Pages/Game/Game';
 import Home from '../Pages/Home/Home';
-import appStore from './appStore';
+import { setAppState, initialState } from './appStore';
 import NavBar from './NavBar';
 
-const store = createStore(appStore);
-
 const App = () => {
+  const dispatch = useDispatch();
+  const appState = useSelector((state) => state);
+
+  const isAppStateInitial = _.isEqual(appState, initialState());
+
+  if (isAppStateInitial) {
+    const appStateFromLocalStorage = JSON.parse(window.localStorage.getItem('memoryGameState'));
+    dispatch(setAppState(appStateFromLocalStorage));
+  }
+
   return (
-    <>
-      <Provider store={store}>
-        <Router>
-          <NavBar />
-          <div className='app-content'>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/game' component={Game} />
-              <Redirect from='*' to='/' />
-            </Switch>
-          </div>
-        </Router>
-      </Provider>
-    </>
+    <Router>
+      <NavBar />
+      <div className='app-content'>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/game' component={Game} />
+          <Redirect from='*' to='/' />
+        </Switch>
+      </div>
+    </Router>
   );
 };
 

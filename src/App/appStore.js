@@ -84,7 +84,21 @@ const setSolvedCardsReducer = (state, action) => {
   };
 };
 
-const initialState = () => {
+const SET_APP_STATE = 'APP/SET_APP_STATE';
+export const setAppState = (appState) => {
+  return {
+    type: SET_APP_STATE,
+    appState,
+  };
+};
+const setAppStateReducer = (state, action) => {
+  return {
+    ...state,
+    ...action.appState,
+  };
+};
+
+export const initialState = () => {
   const initialState = {
     deckSize: 20,
     tryCount: 0,
@@ -104,6 +118,7 @@ const reducers = {
   [SET_CARDS]: setCardsReducer,
   [SET_REVEALED_CARD_INDICES]: setRevealedCardIndicesReducer,
   [SET_SOLVED_CARDS]: setSolvedCardsReducer,
+  [SET_APP_STATE]: setAppStateReducer,
 };
 
 const appStore = createReducer (initialState(), reducers);

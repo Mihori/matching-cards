@@ -8,13 +8,26 @@ import { setTryCount, setBestResult, setRevealedCardIndices, setSolvedCards } fr
 const Game = () => {
   const dispatch = useDispatch();
 
-  const cards = useSelector(state => state.cards);
+  const deckSize = useSelector(state => state.deckSize);
   const tryCount = useSelector(state => state.tryCount);
+  const bestResult = useSelector(state => state.bestResult);
+  const cards = useSelector(state => state.cards);
   const revealedCardIndices = useSelector(state => state.revealedCardIndices);
   const solvedCards = useSelector(state => state.solvedCards);
-  const bestResult = useSelector(state => state.bestResult);
 
   const isGameEnded = solvedCards.length === cards.length / 2;
+
+  useEffect(() => {
+    window.localStorage.setItem('memoryGameState', JSON.stringify({
+      deckSize,
+      tryCount,
+      bestResult,
+      cards,
+      revealedCardIndices,
+      solvedCards
+    }));
+    // eslint-disable-next-line
+  }, [tryCount]);
 
   useEffect(() => {
     if (revealedCardIndices.length > 0 && cards[revealedCardIndices[0]] === cards[revealedCardIndices[1]]) {
