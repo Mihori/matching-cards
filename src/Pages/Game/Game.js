@@ -16,6 +16,8 @@ const Game = () => {
   const solvedCards = useSelector(state => state.solvedCards);
 
   const isGameEnded = solvedCards.length === cards.length / 2;
+  const isBestResult = bestResult[deckSize];
+  const isBestResultWorseThanTryCount = isBestResult && bestResult[deckSize] > tryCount;
 
   useEffect(() => {
     window.localStorage.setItem('memoryGameState', JSON.stringify({
@@ -37,13 +39,16 @@ const Game = () => {
   }, [revealedCardIndices]);
 
   useEffect(() => {
-    if (isGameEnded && (!bestResult || (bestResult && bestResult > tryCount))) dispatch(setBestResult(tryCount));
+    if (isGameEnded && (!isBestResult || isBestResultWorseThanTryCount)) {
+      const newBestResult = {...bestResult, [deckSize]: tryCount}
+      dispatch(setBestResult(newBestResult))
+    };
     // eslint-disable-next-line
   }, [solvedCards]);
 
   return (
     <>
-        <GameInfo tryCount={tryCount} bestResult={bestResult}/>
+        <GameInfo tryCount={tryCount} bestResult={bestResult[deckSize]}/>
         <div className='cards'>
           {
             cards && cards.length > 0 && cards.map((card, index) => (

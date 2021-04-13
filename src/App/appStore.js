@@ -1,5 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 
+export const deckSizeValues = [6, 8, 10, 12, 14, 16, 18, 20];
+
+const defaultBestResults = deckSizeValues.reduce((deckSizeObject, currentDeckSize) => {
+  return ({ ...deckSizeObject, [currentDeckSize]: undefined})
+}, {})
+
 const SET_DECK_SIZE = 'APP/SET_DECK_SIZE';
 export const setDeckSize = (deckSize) => {
   return {
@@ -102,7 +108,7 @@ export const initialState = () => {
   const initialState = {
     deckSize: 20,
     tryCount: 0,
-    bestResult: undefined,
+    bestResult: defaultBestResults,
     cards: [],
     revealedCardIndices: [],
     solvedCards: []
