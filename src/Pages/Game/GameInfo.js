@@ -2,26 +2,21 @@ import React from 'react';
 import NewGameButton from '../../Utils/Components/NewGameButton';
 
 const GameInfo = ({ tryCount, bestResult }) => {
-
   return (
-    <div style={{ display: 'flex'}}>
-    <div className='game-info'>
-      <div>
-        <span style={{ color: '#6d6d6d', marginRight: '4px' }}>Current tries:</span>
-        <span style={{ fontSize: '20px' }}>{tryCount}</span>
+    <div className='game-info-container'>
+      <div className='game-info'>
+        <div>
+          <span className='game-info-text'>Current tries:</span>
+          <span className='try-count-number'>{tryCount}</span>
+        </div>
+        <div className='best-result-container'>
+          <span className='game-info-text' style={{ marginRight: '0px' }}>Best:</span>
+          <span className='best-result-number'>{bestResult}</span>
+        </div>
+        <NewGameButton text='restart' />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
-        <span style={{ color: '#6d6d6d' }}>
-          Best:
-            </span>
-        <span style={{ fontSize: '30px', alignSelf: 'center' }}>
-          {bestResult}
-        </span>
-      </div>
-      <NewGameButton text='restart' />
     </div>
-    </div>
-  )
+  );
 };
 
 export default GameInfo;

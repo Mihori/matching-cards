@@ -1,3 +1,7 @@
+.game-info-container {
+  display: flex;
+}
+
 .game-info {
   display: inline-grid;
   grid-template-columns: max-content auto max-content;
@@ -8,6 +12,33 @@
 
   @include second-breakpoint {
     width: 80%;
+  }
+}
+
+.game-info-text {
+  color: #555555;
+  margin-right: 4px;
+}
+
+.try-count-number {
+  font-size: 20px;
+}
+
+.best-result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 8px;
+}
+
+.best-result-number {
+  font-size: 32px;
+  align-self: center;
+
+  @include second-breakpoint {
+    font-size: 26px;
   }
 }
 
