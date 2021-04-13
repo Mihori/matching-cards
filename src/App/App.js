@@ -13,10 +13,10 @@ const App = () => {
   const appState = useSelector((state) => state);
 
   const isAppStateInitial = _.isEqual(appState, initialState());
+  const appStateFromLocalStorage = window.localStorage.getItem('memoryGameState');
 
-  if (isAppStateInitial) {
-    const appStateFromLocalStorage = JSON.parse(window.localStorage.getItem('memoryGameState'));
-    dispatch(setAppState(appStateFromLocalStorage));
+  if (isAppStateInitial && appStateFromLocalStorage) {
+    dispatch(setAppState(JSON.parse(appStateFromLocalStorage)));
   }
 
   return (
